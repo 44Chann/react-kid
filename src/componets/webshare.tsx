@@ -6,8 +6,9 @@ interface Props {
     title: any
     text: any
     children: any
+    webShareTitle: string
 }
-export const WebShare = ({ url, title, text, children }: Props) => {
+export const WebShare = ({ url, title, text, children, webShareTitle }: Props) => {
     const [isSupported, setIssupported] = useState(true)
     const [showModal, setShowModal] = useState(false);
     const shareDetails = { url, title, text };
@@ -35,7 +36,7 @@ export const WebShare = ({ url, title, text, children }: Props) => {
                 {children}
             </div>
             <div>
-                {isSupported ? "" : <ModalPortal showModal={showModal} closeModal={() => setShowModal(false)} url={url} title={title} text={text} />}
+                {isSupported ? "" : <ModalPortal webShareTitle={webShareTitle} showModal={showModal} closeModal={() => setShowModal(false)} url={url} title={title} text={text} />}
             </div>
         </>
     )

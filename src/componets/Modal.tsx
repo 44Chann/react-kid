@@ -12,11 +12,11 @@ interface Props {
     url: string
     title: string
     text: string
+    webShareTitle: string
 }
 
-export function ModalPortal({ showModal, closeModal, url, title, text }: Props) {
+export function ModalPortal({ showModal, closeModal, url, title, text, webShareTitle }: Props) {
     const el = useRef(modalRoot);
-    const link = "https://www.youtube.com/watch?v=MwpMEbgC7DA"
     const [value, copy] = useCopyToClipboard();
     const [iscopied, setIscopied] = useState(false)
 
@@ -35,7 +35,7 @@ export function ModalPortal({ showModal, closeModal, url, title, text }: Props) 
                                 <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t min-w-[400px]">
 
                                     <h3 className="text-3xl font-semibold">
-                                        Modal Title
+                                        {webShareTitle}
                                     </h3>
                                     <button onClick={() => {
                                         closeModal()
@@ -50,9 +50,9 @@ export function ModalPortal({ showModal, closeModal, url, title, text }: Props) 
                                         <SocialShare url={url} title={title} text={text} />
                                     </div>
                                     <div className="flex items-center">
-                                        <input className="my-4 text-slate-500 text-lg leading-relaxed border border-blue-500 min-w-[500px] " type="text" value={link} />
+                                        <input className="my-4 text-slate-500 text-lg leading-relaxed border border-blue-500 min-w-[500px] " type="text" value={url} />
                                         <button onClick={() => {
-                                            copy(link)
+                                            copy(url)
                                             setIscopied(true)
                                         }} className="mx-2">{iscopied ? "copied" : "copy"}</button>
                                     </div>
