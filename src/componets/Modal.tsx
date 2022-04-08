@@ -5,23 +5,21 @@ import useCopyToClipboard from "../hooks/useCopytoclipboard";
 import { SocialShare } from "./SocialShare";
 const modalRoot = document.querySelector("#portal") as HTMLElement;
 
-export function ModalPortal() {
+
+interface Props {
+    showModal: boolean
+    closeModal: Function
+}
+
+export function ModalPortal({ showModal, closeModal }: Props) {
     const el = useRef(modalRoot);
     const link = "https://www.youtube.com/watch?v=MwpMEbgC7DA"
     const [value, copy] = useCopyToClipboard();
     const [iscopied, setIscopied] = useState(false)
 
-    const [showModal, setShowModal] = React.useState(false);
+
     return ReactDom.createPortal(
         <>
-            <h2>Modal</h2>
-            <button
-                className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => setShowModal(true)}
-            >
-                Open regular modal
-            </button>
             {showModal ? (
                 <>
                     <div
@@ -37,7 +35,7 @@ export function ModalPortal() {
                                         Modal Title
                                     </h3>
                                     <button onClick={() => {
-                                        setShowModal(false)
+                                        closeModal()
                                         setIscopied(false)
                                     }}>
                                         Close
