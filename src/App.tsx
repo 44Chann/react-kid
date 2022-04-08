@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       {/* <ModalPortal /> */}
-      <WebShare url="https:hello.com" title="this is title" text="awesome"  >
+      <WebShare url="https://portfolio-mywwsmdcv-44chann.vercel.app/" title="vikash portfolio" text="this is cool portfolio"  >
         <button>Share</button>
       </WebShare>
     </div >

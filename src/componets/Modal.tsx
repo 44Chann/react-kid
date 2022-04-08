@@ -9,9 +9,12 @@ const modalRoot = document.querySelector("#portal") as HTMLElement;
 interface Props {
     showModal: boolean
     closeModal: Function
+    url: string
+    title: string
+    text: string
 }
 
-export function ModalPortal({ showModal, closeModal }: Props) {
+export function ModalPortal({ showModal, closeModal, url, title, text }: Props) {
     const el = useRef(modalRoot);
     const link = "https://www.youtube.com/watch?v=MwpMEbgC7DA"
     const [value, copy] = useCopyToClipboard();
@@ -23,9 +26,9 @@ export function ModalPortal({ showModal, closeModal }: Props) {
             {showModal ? (
                 <>
                     <div
-                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        className="justify-center  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                     >
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                        <div className="relative  my-6 mx-auto ">
                             {/*content*/}
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                 {/*header*/}
@@ -44,7 +47,7 @@ export function ModalPortal({ showModal, closeModal }: Props) {
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto ">
                                     <div className="flex">
-                                        <SocialShare />
+                                        <SocialShare url={url} title={title} text={text} />
                                     </div>
                                     <div className="flex items-center">
                                         <input className="my-4 text-slate-500 text-lg leading-relaxed border border-blue-500 min-w-[500px] " type="text" value={link} />
